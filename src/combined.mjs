@@ -102,10 +102,12 @@ const standardResponse = (success, data, message = '') => ({
   timestamp: new Date().toISOString(),
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
+// Start the server (only in non-Vercel environments)
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+  });
+}
 
 // Validate address for supported networks
 const validateAddress = (network, address) => {
@@ -445,6 +447,8 @@ app.get('/api/balance/:network/:address', async (req, res) => {
     res.status(400).json(standardResponse(false, null, error.message));
   }
 });
+
+export default app;
 
 // Batch balance endpoint for Bitcoin, Dogecoin, and Litecoin
 app.post('/api/balances/:network', async (req, res) => {
