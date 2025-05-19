@@ -1,3 +1,4 @@
+//src/combined.mjs
 import express from 'express';
 import bitcoin from 'bitcoinjs-lib';
 import { Buffer } from 'node:buffer';
@@ -99,6 +100,11 @@ const standardResponse = (success, data, message = '') => ({
   data,
   message,
   timestamp: new Date().toISOString(),
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });
 
 // Validate address for supported networks
@@ -540,9 +546,3 @@ app.post('/api/balances/:network', async (req, res) => {
   }
 });
 
-// ======================
-// Start Server
-// ======================
-app.listen(PORT, () => {
-  console.log(`API server running on port ${PORT}`);
-});
