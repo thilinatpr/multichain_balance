@@ -103,11 +103,11 @@ const standardResponse = (success, data, message = '') => ({
 });
 
 // Start the server (only in non-Vercel environments)
-if (!process.env.VERCEL) {
-  app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`);
-  });
-}
+//if (!process.env.VERCEL) {
+//  app.listen(PORT, () => {
+//    console.log(`Server listening on port ${PORT}`);
+//  });
+//}
 
 // Validate address for supported networks
 const validateAddress = (network, address) => {
